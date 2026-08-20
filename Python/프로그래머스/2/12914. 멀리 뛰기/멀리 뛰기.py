@@ -1,7 +1,8 @@
-import math
-
 def solution(n):
-    answer = 0
-    for k in range(0,n//2+1):
-        answer += math.comb(n-k,k)
-    return answer%1234567
+    if n >= 3:
+        a, b = 1, 2
+        for i in range(3, n+1):
+            a, b = b, (a + b) % 1234567 
+    else:
+        b = n % 1234567           
+    return b
