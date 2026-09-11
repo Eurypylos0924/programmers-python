@@ -1,7 +1,7 @@
 def solution(dirs):
     spot = (0, 0)
     direction = {'U':(0,1), 'D':(0,-1), 'L':(-1,0), 'R':(1,0)}
-    visited = []
+    visited = set()
     
     for c in dirs:
         dx, dy = direction[c]
@@ -9,7 +9,7 @@ def solution(dirs):
         
         if abs(nx) < 6 and abs(ny) < 6:
             nspot = (nx, ny)
-            visited.append(frozenset([spot, nspot]))
+            visited.add(frozenset([spot, nspot]))
             spot = nspot
     
-    return len(set(visited))
+    return len(visited)
