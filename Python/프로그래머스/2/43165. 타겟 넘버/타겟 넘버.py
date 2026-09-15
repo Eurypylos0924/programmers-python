@@ -1,19 +1,15 @@
-from itertools import combinations
-
 def solution(numbers, target):
-    comb = []
-    sumlist = []
-    totsum = sum(numbers)
-    answer = 0
+    answer = [0]
+    n = len(numbers)
     
-    for i in range(1,len(numbers)):
-        comb.extend(combinations(numbers,i))
+    def dfs(index, current_sum):
+        if index == n:
+            if current_sum == target:
+                answer[0] += 1
+            return
         
-    for j in range(len(comb)):
-        sumlist.append(sum(comb[j]))
-        
-    for x in range(len(sumlist)):
-        if target == (totsum - (sumlist[x]*2)):
-            answer += 1
+        dfs(index+1, current_sum + numbers[index])   # 이 숫자를 +로 쓰는 경우
+        dfs(index+1, current_sum - numbers[index])   # 이 숫자를 -로 쓰는 경우
     
-    return answer
+    dfs(0, 0)
+    return answer[0]
