@@ -1,18 +1,11 @@
-def structure(l):
-    stru = []
-    for i in range(l-1,-1,-1):
-        stru.append(i)
-    return stru    
-
 def solution(prices):
-    index = []
-    l = len(prices)
-    answer = structure(l)
-    
-    for i in range(l):
-        while index and prices[index[-1]] > prices[i]:
-            answer[index[-1]] = i-index[-1]
-            index.pop(-1)
-        index.append(i)
-    
+    answer = []
+    n = len(prices)
+    for i in range(n):
+        count = 0
+        for j in range(i+1, n):
+            count += 1
+            if prices[j] < prices[i]:
+                break
+        answer.append(count)
     return answer
